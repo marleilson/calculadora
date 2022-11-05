@@ -2,35 +2,34 @@ import 'package:calculadora/cartaopadrao.dart';
 import 'package:calculadora/tela_principal.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:calculadora/tela_principal.dart';
 
 class filhocartao extends StatelessWidget {
-  filhocartao({required this.descricao, required this.icon});
+  filhocartao({required this.descricao, required this.icon, required this.corMeF});
 
   final String descricao;
   final IconData icon;
+  final Color corMeF;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: CartaoPadrao(
-        cor: corInativaCartaoPadrao,
-        filhoCartao: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 70.0,
-            ),
-            Text(
-              descricao,
-              style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700),
-            ),
-          ],
-        ),
+    return CartaoPadrao(
+      cor: corMeF,
+      filhoCartao: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 70.0,
+          ),
+          Text(
+            descricao,
+            style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+                fontWeight: FontWeight.w700),
+          ),
+        ],
       ),
     );
   }
