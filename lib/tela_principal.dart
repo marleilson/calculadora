@@ -7,6 +7,7 @@ const corAtivaCartaoPadrao = Colors.green;
 const corInativaCartaoPadrao = Color(0xFF9E9E9E);
 const barrainferior = 80.0;
 const corBarrainferior = Colors.green;
+const styleDoTexto = TextStyle(fontSize: 50.0, fontWeight: FontWeight.w900);
 
 enum CorSexo {
   Masculino,
@@ -81,11 +82,30 @@ class _TelaprincipalState extends State<Telaprincipal> {
               children: [
                 Expanded(
                   child: CartaoPadrao(
+                    filhoCartao: Column(
+                      children:[
+                        Text('ALTURA',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700),
+                        ),
+                        Row(
+                          children: [
+                            Text('180',
+                                style:styleDoTexto,
+                            ),
+                          ],
+
+                        ),
+                      ],
+                    ),
                     cor: corInativaCartaoPadrao,
                   ),
                 ),
               ],
-            )),
+            ),
+            ),
             Expanded(
               child: Row(
                 children: [
