@@ -89,6 +89,9 @@ class _TelaprincipalState extends State<Telaprincipal> {
                         Text('ALTURA',
                         style: styleDaDescricao,
                         ),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -167,6 +170,20 @@ class _TelaprincipalState extends State<Telaprincipal> {
                           ),
                           Text(idade.toString(),
                             style: styleDoTexto,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Botoes(
+                                iconeBotao: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Botoes(
+                                iconeBotao: FontAwesomeIcons.plus,
+                              ),
+                            ],
                           ),
                         ],
                       ),

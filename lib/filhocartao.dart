@@ -21,6 +21,9 @@ class filhocartao extends StatelessWidget {
             icon,
             size: 70.0,
           ),
+          SizedBox(
+            height: 10,
+          ),
           Text(
             descricao,
             style: TextStyle(
