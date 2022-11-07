@@ -2,12 +2,9 @@ import 'package:calculadora/filhocartao.dart';
 import 'package:flutter/material.dart';
 import 'cartaopadrao.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:calculadora/constantes.dart';
+import 'package:calculadora/botaoPersonalizado.dart';
 
-const corAtivaCartaoPadrao = Colors.green;
-const corInativaCartaoPadrao = Color(0xFF9E9E9E);
-const barrainferior = 80.0;
-const corBarrainferior = Colors.green;
-const styleDoTexto = TextStyle(fontSize: 50.0, fontWeight: FontWeight.w900);
 
 enum CorSexo {
   Masculino,
@@ -24,6 +21,9 @@ class Telaprincipal extends StatefulWidget {
 class _TelaprincipalState extends State<Telaprincipal> {
 
   CorSexo? sexoSelecionado;
+  int altura = 180;
+  int peso = 70;
+  int idade = 30;
 
 
   @override
@@ -40,6 +40,7 @@ class _TelaprincipalState extends State<Telaprincipal> {
         body: Column(
           children: [
             Expanded(
+
               child: Row(
                 children: [
                   Expanded(
@@ -83,20 +84,36 @@ class _TelaprincipalState extends State<Telaprincipal> {
                 Expanded(
                   child: CartaoPadrao(
                     filhoCartao: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children:[
                         Text('ALTURA',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700),
+                        style: styleDaDescricao,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text('180',
+                            Text(altura.toString(),
                                 style:styleDoTexto,
                             ),
+                            Text('cm',
+                              style: styleDaDescricao,
+                            )
+                            //Text(data),
                           ],
-
+                        ),
+                        Slider(
+                          activeColor: corAtivaCartaoPadrao,
+                          inactiveColor: corInativaCartaoPadrao,
+                            onChanged: (double novoValor) {
+                              setState(() {
+                                altura = novoValor.round();
+                              });
+                            },
+                            value: altura.toDouble(),
+                            min: 50.0,
+                            max: 220.0,
                         ),
                       ],
                     ),
@@ -112,11 +129,47 @@ class _TelaprincipalState extends State<Telaprincipal> {
                   Expanded(
                     child: CartaoPadrao(
                       cor: corInativaCartaoPadrao,
+                      filhoCartao: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('PESO',
+                          style: styleDaDescricao,
+                          ),
+                          Text(peso.toString(),
+                          style: styleDoTexto,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Botoes(
+                                iconeBotao: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Botoes(
+                                iconeBotao: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
                     child: CartaoPadrao(
                       cor: corInativaCartaoPadrao,
+                      filhoCartao: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('IDADE',
+                            style: styleDaDescricao,
+                          ),
+                          Text(idade.toString(),
+                            style: styleDoTexto,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
