@@ -20,7 +20,7 @@ class filhocartao extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 70.0,
+            size: 80.0,
             color: corDoSexo,
           ),
           SizedBox(
@@ -29,7 +29,7 @@ class filhocartao extends StatelessWidget {
           Text(
             descricao,
             style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 25.0,
                 color: Colors.black,
                 fontWeight: FontWeight.w700),
           ),
