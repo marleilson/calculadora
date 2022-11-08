@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 const corAtivaCartaoPadrao = Colors.green;
 const corInativaCartaoPadrao = Color(0xFF9E9E9E);
-const corDosBotoes = Colors.deepOrangeAccent;
+const corDosBotoes = Color(0xFF5E5E5E);
 const barrainferior = 80.0;
 const corBarrainferior = Colors.green;
+const corDoSexoMas = Colors.blue;
+const corDoSexoFem = Colors.red;
+
 
 //estilo do componentes em branco como icons, numeros
 const styleDoTexto = TextStyle(

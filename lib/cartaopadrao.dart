@@ -10,7 +10,7 @@ final Widget? filhoCartao;
   Widget build(BuildContext context) {
     return Container(
       child: filhoCartao,
-      margin: const EdgeInsets.all(20),
+      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: cor,
         borderRadius: BorderRadius.circular(10),

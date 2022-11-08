@@ -56,6 +56,7 @@ class _TelaprincipalState extends State<Telaprincipal> {
                             : corInativaCartaoPadrao,
                         descricao: 'MASCULINO',
                         icon: FontAwesomeIcons.mars,
+                        corDoSexo: corDoSexoMas,
                       ),
                     ),
                   ),
@@ -72,6 +73,7 @@ class _TelaprincipalState extends State<Telaprincipal> {
                             : corInativaCartaoPadrao,
                         descricao: 'FEMININO',
                         icon: FontAwesomeIcons.venus,
+                        corDoSexo: corDoSexoFem,
                       ),
                     ),
                   ),
@@ -109,9 +111,9 @@ class _TelaprincipalState extends State<Telaprincipal> {
                         Slider(
                           activeColor: corAtivaCartaoPadrao,
                           inactiveColor: corInativaCartaoPadrao,
-                            onChanged: (double novoValor) {
+                            onChanged: (double novoValorAltura) {
                               setState(() {
-                                altura = novoValor.round();
+                                altura = novoValorAltura.round();
                               });
                             },
                             value: altura.toDouble(),
@@ -142,16 +144,43 @@ class _TelaprincipalState extends State<Telaprincipal> {
                           style: styleDoTexto,
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Botoes(
-                                iconeBotao: FontAwesomeIcons.minus,
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                               backgroundColor: corDosBotoes,
+                               shape: CircleBorder(),
+                               padding: EdgeInsets.all(15),
+                               side: BorderSide(color: Colors.white)
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    peso--;
+                                  });
+                                },
+                              child: Icon(FontAwesomeIcons.minus
+                                ,
+                              ),
                               ),
                               SizedBox(
                                 width: 10,
                               ),
-                              Botoes(
-                                iconeBotao: FontAwesomeIcons.plus,
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: corDosBotoes,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(color: Colors.white)
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    peso++;
+                                  });
+                                },
+                                child: Icon(FontAwesomeIcons.plus
+                                  ,
+                                ),
                               ),
                             ],
                           ),
@@ -172,16 +201,43 @@ class _TelaprincipalState extends State<Telaprincipal> {
                             style: styleDoTexto,
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Botoes(
-                                iconeBotao: FontAwesomeIcons.minus,
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: corDosBotoes,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(color: Colors.white)
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    idade--;
+                                  });
+                                },
+                                child: Icon(FontAwesomeIcons.minus
+                                  ,
+                                ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Botoes(
-                                iconeBotao: FontAwesomeIcons.plus,
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: corDosBotoes,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(15),
+                                  side: BorderSide(color: Colors.white)
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    idade++;
+                                  });
+                                },
+                                child: Icon(FontAwesomeIcons.plus
+                                  ,
+                                ),
                               ),
                             ],
                           ),
