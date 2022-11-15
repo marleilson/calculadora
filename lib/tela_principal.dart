@@ -1,9 +1,9 @@
-import 'package:calculadora/filhocartao.dart';
+import 'package:calculadora/telaDeCalculo.dart';
 import 'package:flutter/material.dart';
 import 'cartaopadrao.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:calculadora/constantes.dart';
-import 'package:calculadora/botaoPersonalizado.dart';
+import 'package:flutter/src/widgets/navigator.dart';
+import 'package:calculadora/calculos.dart';
 
 
 enum CorSexo {
@@ -23,75 +23,50 @@ class _TelaprincipalState extends State<Telaprincipal> {
   CorSexo? sexoSelecionado;
   int altura = 180;
   int peso = 70;
-  int idade = 30;
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          //backgroundColor: Colors.black54,
-          title: const Text(
-            'Calculadora de IMC',
-            textAlign: TextAlign.center,
-          ),
+      appBar: AppBar(
+        centerTitle: true,
+        //backgroundColor: Colors.black54,
+        title: const Text(
+          'Calculadora de IMC',
+          textAlign: TextAlign.center,
         ),
-        body: Column(
-          children: [
-            Expanded(
-
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          sexoSelecionado = CorSexo.Masculino;
-                        });
-                      },
-                      child: filhocartao(
-                        corMeF: sexoSelecionado == CorSexo.Masculino
-                            ? corAtivaCartaoPadrao
-                            : corInativaCartaoPadrao,
-                        descricao: 'MASCULINO',
-                        icon: FontAwesomeIcons.mars,
-                        corDoSexo: corDoSexoMas,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          sexoSelecionado = CorSexo.Feminino;
-                        });
-                      },
-                      child: filhocartao(
-                        corMeF: sexoSelecionado == CorSexo.Feminino
-                            ? corAtivaCartaoPadrao
-                            : corInativaCartaoPadrao,
-                        descricao: 'FEMININO',
-                        icon: FontAwesomeIcons.venus,
-                        corDoSexo: corDoSexoFem,
-                      ),
-                    ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  Text(
+                    'O índice de massa corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal.'
+                        ' Desenvolvido pelo polímata Lambert Quételet no fim do século XIX, trata-se de um método fácil e rápido para a avaliação do nível de gordura de cada pessoa, sendo, por isso, um preditor internacional de obesidade adotado pela Organização Mundial da Saúde (OMS).'
+                        '\nFonte: Wikipédia.',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
+
             ),
-            Expanded(
-                child: Row(
+          ),
+          Expanded(
+            child: Row(
               children: [
                 Expanded(
                   child: CartaoPadrao(
                     filhoCartao: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:[
-                        Text('ALTURA',
-                        style: styleDaDescricao,
+                      children: [
+                        const Text('ALTURA',
+                          style: KstyleDaDescricao,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Row(
@@ -100,168 +75,115 @@ class _TelaprincipalState extends State<Telaprincipal> {
                           textBaseline: TextBaseline.alphabetic,
                           children: [
                             Text(altura.toString(),
-                                style:styleDoTexto,
+                              style: KstyleDoTexto,
                             ),
-                            Text('cm',
-                              style: styleDaDescricao,
+                            const Text('cm',
+                              style: KstyleDaDescricao,
                             )
                             //Text(data),
                           ],
                         ),
                         Slider(
-                          activeColor: corAtivaCartaoPadrao,
-                          inactiveColor: corInativaCartaoPadrao,
-                            onChanged: (double novoValorAltura) {
-                              setState(() {
-                                altura = novoValorAltura.round();
-                              });
-                            },
-                            value: altura.toDouble(),
-                            min: 50.0,
-                            max: 220.0,
+                          activeColor: KcorAtivaCartaoPadrao,
+                          inactiveColor: KcorInativaCartaoPadrao,
+                          onChanged: (double novoValorAltura) {
+                            setState(() {
+                              altura = novoValorAltura.round();
+                            });
+                          },
+                          value: altura.toDouble(),
+                          min: 50.0,
+                          max: 220.0,
                         ),
                       ],
                     ),
-                    cor: corInativaCartaoPadrao,
+                    cor: KcorInativaCartaoPadrao,
                   ),
                 ),
               ],
             ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CartaoPadrao(
-                      cor: corInativaCartaoPadrao,
-                      filhoCartao: Column(
+          ),
+          Expanded(
+            child: Row(
+              children: [Expanded(
+                child: CartaoPadrao(
+                  filhoCartao: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('PESO',
+                        style: KstyleDaDescricao,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
                         children: [
-                          Text('PESO',
-                          style: styleDaDescricao,
-                          ),
                           Text(peso.toString(),
-                          style: styleDoTexto,
+                            style: KstyleDoTexto,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                               backgroundColor: corDosBotoes,
-                               shape: CircleBorder(),
-                               padding: EdgeInsets.all(15),
-                               side: BorderSide(color: Colors.white)
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    peso--;
-                                  });
-                                },
-                              child: Icon(FontAwesomeIcons.minus
-                                ,
-                              ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: corDosBotoes,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(color: Colors.white)
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    peso++;
-                                  });
-                                },
-                                child: Icon(FontAwesomeIcons.plus
-                                  ,
-                                ),
-                              ),
-                            ],
-                          ),
+                          const Text('Kg',
+                            style: KstyleDaDescricao,
+                          )
+                          //Text(data),
                         ],
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: CartaoPadrao(
-                      cor: corInativaCartaoPadrao,
-                      filhoCartao: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('IDADE',
-                            style: styleDaDescricao,
-                          ),
-                          Text(idade.toString(),
-                            style: styleDoTexto,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: corDosBotoes,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(color: Colors.white)
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    idade--;
-                                  });
-                                },
-                                child: Icon(FontAwesomeIcons.minus
-                                  ,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: corDosBotoes,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(color: Colors.white)
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    idade++;
-                                  });
-                                },
-                                child: Icon(FontAwesomeIcons.plus
-                                  ,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                      Slider(
+                        activeColor: KcorAtivaCartaoPadrao,
+                        inactiveColor: KcorInativaCartaoPadrao,
+                        onChanged: (double novoValorPeso) {
+                          setState(() {
+                            peso = novoValorPeso.round();
+                          });
+                        },
+                        value: peso.toDouble(),
+                        min: 0.0,
+                        max: 140.0,
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                  cor: KcorInativaCartaoPadrao,
+                ),
               ),
+              ],
             ),
-            Container(
+          ),
+          GestureDetector(
+            onTap: () {
+
+              CalculadoraIMC calc = new CalculadoraIMC(altura: altura, peso: peso);
+
+              Navigator.push(context, MaterialPageRoute(builder: (context)
+              => new TelaDeResultado(
+                valorIMC: calc.calcularIMC(),
+                situacaoIMC: calc.obterResultado(),
+                orientacaoIMC: calc.obterInterpretacao(),
+
+              ),
+              ),
+              );
+            },
+            child: Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 10),
-              color: corBarrainferior,
+              color: KcorBarrainferior,
               width: double.infinity,
-              height: barrainferior,
-              child: Text(
-                'CALCULAR',
+              height: Kbarrainferior,
+              child: Text('CALCULAR',
+
                 style: TextStyle(
                   fontSize: 30,
                 ),
               ),
             ),
-          ],
-        ));
+          )
+        ],
+      ),
+    );
   }
 }
+
+
+
